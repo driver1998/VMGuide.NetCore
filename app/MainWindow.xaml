@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rxui="http://reactiveui.net"
+        mc:Ignorable="d" Width="1000" Height="500"
+        x:Class="app.MainWindow">
+
+        <Window.Styles>
+            <Style Selector="Button#backBtn:disabled">
+                <Setter Property="IsVisible" Value="false"/>
+            </Style>
+            <Style Selector="Button.title">
+                <Setter Property="Foreground" Value="white"/>
+            </Style>
+        </Window.Styles>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Background="#2B579A">
+                <Button x:Name="backBtn" Grid.Row="0" Width="48" HorizontalAlignment="Left"
+                        Content="Back" Command="{Binding GoBack}" Classes="title"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Width="48" Content="_" Classes="title"/>
+                    <Button Width="48" Content="+" Classes="title"/>
+                    <Button Width="48" Content="X" Classes="title"/>
+                </StackPanel>
+            </Grid>
+            
+            <rxui:RoutedViewHost Grid.Row="1" Router="{Binding Router}" PageTransition="{x:Null}">
+                <rxui:RoutedViewHost.DefaultContent/>
+            </rxui:RoutedViewHost>
+        </Grid>
+        
+</Window>

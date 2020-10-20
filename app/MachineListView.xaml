@@ -1,0 +1,59 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="app.MachineListView">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition/>
+                <RowDefinition Height="48"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Background="#2B579A">
+                <TextBlock Margin="60, 10, 60, 0" Text="Welcome" FontSize="48" Foreground="White"/>
+                <TextBlock Margin="60, -5, 60, 10" Text="To continue, please select or open a Virtual Machine." Foreground="White"/>
+            </StackPanel>
+
+            <ScrollViewer Margin="50, 10, 50, 0" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <ItemsRepeater Items="{Binding Machines}">
+                    <ItemsRepeater.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Margin="15, 20, 20, 0" Text="{Binding Key}" FontSize="14"/>
+                                <ItemsRepeater Items="{Binding}">
+                                    <ItemsRepeater.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button HorizontalContentAlignment="Left" BorderThickness="0"
+                                                    Command="{Binding $parent[UserControl].DataContext.LoadMachine}"
+                                                    Background="Transparent"
+                                                    CommandParameter="{Binding}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Grid Width="40" Height="40" Margin="10, 0, 0, 0" Background="#2B579A"/>
+                                                    <StackPanel>
+                                                        <TextBlock Margin="10, 5, 10, 0" Text="{Binding Name}" FontSize="18"/>
+                                                        <TextBlock Margin="10, 0, 10, 5" Text="{Binding Path}" FontSize="10"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Button>
+                                        </DataTemplate>
+                                    </ItemsRepeater.ItemTemplate>
+                                </ItemsRepeater>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+            </ScrollViewer>
+
+            
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Open" Height="40"
+                        Command="{Binding OpenMachineDialog}" CommandParameter="{Binding $parent[Window]}"/>
+                <Button Content="Refresh" Height="40" Command="{Binding Refresh}" />
+                <Button Content="About" Height="40"
+                        Command="{Binding AboutDialog}" CommandParameter="{Binding $parent[Window]}"/>
+            </StackPanel>
+        
+        </Grid>
+</UserControl>

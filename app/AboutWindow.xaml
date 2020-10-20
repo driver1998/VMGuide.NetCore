@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Width="500" Height="320"
+        x:Class="app.AboutWindow"
+        FontFamily="Noto Sans CJK SC"
+        Title="app">
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Background="#2B579A"/>
+            <StackPanel Margin="50, 100, 50, 100" Grid.Column="1">
+                <TextBlock Text="VMGuide 3.5 Technical Preview"/>
+            </StackPanel>    
+        </Grid>
+    
+</Window>
