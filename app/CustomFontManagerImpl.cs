@@ -36,7 +36,7 @@ namespace app
         private readonly string[] _bcp47 = { CultureInfo.CurrentCulture.ThreeLetterISOLanguageName, CultureInfo.CurrentCulture.TwoLetterISOLanguageName };
 
         public bool TryMatchCharacter(int codepoint, FontStyle fontStyle, FontWeight fontWeight, FontFamily fontFamily,
-            CultureInfo culture, out FontKey fontKey)
+            CultureInfo culture, out Typeface typeface)
         {
             foreach (var customTypeface in _customTypefaces)
             {
@@ -45,7 +45,7 @@ namespace app
                     continue;
                 }
 
-                fontKey = new FontKey(customTypeface.FontFamily.Name, fontStyle, fontWeight);
+                typeface = new Typeface(customTypeface.FontFamily.Name, fontStyle, fontWeight);
 
                 return true;
             }
@@ -53,7 +53,7 @@ namespace app
             var fallback = SKFontManager.Default.MatchCharacter(fontFamily?.Name, (SKFontStyleWeight)fontWeight,
                 SKFontStyleWidth.Normal, (SKFontStyleSlant)fontStyle, _bcp47, codepoint);
 
-            fontKey = new FontKey(fallback?.FamilyName ?? _defaultFamilyName, fontStyle, fontWeight);
+            typeface = new Typeface(fallback?.FamilyName ?? _defaultFamilyName, fontStyle, fontWeight);
 
             return true;
         }

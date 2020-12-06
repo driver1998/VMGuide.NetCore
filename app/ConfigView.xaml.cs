@@ -20,6 +20,14 @@ namespace app
             this.AttachedToVisualTree += (s, e) => {    
                 this.Focus();
             };
+
+            this.DetachedFromVisualTree += (s, e) => {
+                Console.WriteLine("DetachedFromVisualTree");
+            };
+
+            this.DetachedFromLogicalTree += (s, e) => {
+                Console.WriteLine("DetachedFromLogicalTree");
+            };
         }
     }
 }
